@@ -1,0 +1,6 @@
+2017-07-20 22:53:41,094:INFO: Namespace(CRF=True, batch_size=64, clip=5.0, demo_model='1499785642', dropout=0.5, embedding_dim=300, epoch=60, hidden_dim=300, lr=0.001, mode='demo', optimizer='Adam', pretrain_embedding='random', shuffle=True, test_data='data_path', train_data='data_path', update_embedding=True)
+2017-07-20 22:53:43,385:INFO: Restoring parameters from ./data_path_save/1499785642/checkpoints/model-95040
+2017-07-20 22:53:43,385:INFO: Restoring parameters from ./data_path_save/1499785642/checkpoints/model-95040
+2017-07-20 22:58:39,804:INFO: Namespace(CRF=True, batch_size=64, clip=5.0, demo_model='1499785642', dropout=0.5, embedding_dim=300, epoch=60, hidden_dim=300, lr=0.001, mode='demo', optimizer='Adam', pretrain_embedding='random', shuffle=True, test_data='data_path', train_data='data_path', update_embedding=True)
+2017-07-20 22:58:48,091:INFO: Restoring parameters from ./data_path_save/1499785642/checkpoints/model-95040
+2017-07-20 22:58:48,091:INFO: Restoring parameters from ./data_path_save/1499785642/checkpoints/model-95040

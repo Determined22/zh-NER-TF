@@ -1,5 +1,6 @@
 import os
 
+
 def conlleval(label_predict, label_path, metric_path):
     """
 

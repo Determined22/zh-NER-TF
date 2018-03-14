@@ -10,29 +10,26 @@ from eval import conlleval
 
 
 class BiLSTM_CRF(object):
-    def __init__(self, batch_size, epoch_num, hidden_dim, embeddings,
-                 dropout_keep, optimizer, lr, clip_grad,
-                 tag2label, vocab, shuffle,
-                 model_path, summary_path, log_path, result_path,
-                 CRF=True, update_embedding=True):
-        self.batch_size = batch_size
-        self.epoch_num = epoch_num
-        self.hidden_dim = hidden_dim
+    def __init__(self, args, embeddings, tag2label, vocab, paths, config):
+        self.batch_size = args.batch_size
+        self.epoch_num = args.epoch
+        self.hidden_dim = args.hidden_dim
         self.embeddings = embeddings
-        self.dropout_keep_prob = dropout_keep
-        self.optimizer = optimizer
-        self.lr = lr
-        self.clip_grad = clip_grad
+        self.CRF = args.CRF
+        self.update_embedding = args.update_embedding
+        self.dropout_keep_prob = args.dropout
+        self.optimizer = args.optimizer
+        self.lr = args.lr
+        self.clip_grad = args.clip
         self.tag2label = tag2label
         self.num_tags = len(tag2label)
         self.vocab = vocab
-        self.shuffle = shuffle
-        self.model_path = model_path
-        self.summary_path = summary_path
-        self.logger = get_logger(log_path)
-        self.result_path = result_path
-        self.CRF = CRF
-        self.update_embedding = update_embedding
+        self.shuffle = args.shuffle
+        self.model_path = paths['model_path']
+        self.summary_path = paths['summary_path']
+        self.logger = get_logger(paths['log_path'])
+        self.result_path = paths['result_path']
+        self.config = config
 
     def build_graph(self):
         self.add_placeholders()
@@ -156,7 +153,7 @@ class BiLSTM_CRF(object):
         """
         saver = tf.train.Saver(tf.global_variables())
 
-        with tf.Session() as sess:
+        with tf.Session(config=self.config) as sess:
             sess.run(self.init_op)
             self.add_summary(sess)
 
@@ -165,7 +162,7 @@ class BiLSTM_CRF(object):
 
     def test(self, test):
         saver = tf.train.Saver()
-        with tf.Session() as sess:
+        with tf.Session(config=self.config) as sess:
             self.logger.info('=========== testing ===========')
             saver.restore(sess, self.model_path)
             label_list, seq_len_list = self.dev_one_epoch(sess, test)
@@ -220,7 +217,7 @@ class BiLSTM_CRF(object):
             if step + 1 == num_batches:
                 saver.save(sess, self.model_path, global_step=step_num)
 
-        self.logger.info('===========validation===========')
+        self.logger.info('===========validation / test===========')
         label_list_dev, seq_len_list_dev = self.dev_one_epoch(sess, dev)
         self.evaluate(label_list_dev, seq_len_list_dev, dev, epoch)
 

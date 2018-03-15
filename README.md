@@ -33,9 +33,9 @@ It looks like a portion of [MSRA corpus](http://sighan.cs.uchicago.edu/bakeoff20
 
 ### test
 
-`python main.py --mode=test --demo_model=1521016137`
+`python main.py --mode=test --demo_model=1521112368`
 
-Please set the parameter `--demo_model` to the model which you want to test. `1521016137` is the model trained by me. 
+Please set the parameter `--demo_model` to the model which you want to test. `1521112368` is the model trained by me. 
 
 An official evaluation tool: [here (click 'Instructions')](http://sighan.cs.uchicago.edu/bakeoff2006/)
 
@@ -43,12 +43,12 @@ My test performance:
 
 | P     | R     | F     | F (PER)| F (LOC)| F (ORG)|
 | :---: | :---: | :---: | :---: | :---: | :---: |
-| 0.8979 | 0.8690 | 0.8832 | 0.8692 | 0.9088 | 0.8493
+| 0.8945 | 0.8752 | 0.8847 | 0.8688 | 0.9118 | 0.8515
 
 
 ### demo
 
-`python main.py --mode=demo --demo_model=1521016137`
+`python main.py --mode=demo --demo_model=1521112368`
 
 You can input one Chinese sentence and the model will return the recognition result:
 

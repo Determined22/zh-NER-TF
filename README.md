@@ -1,10 +1,10 @@
-## A simple BiLSTM-CRF model for Chinese Named Entity Recognition
+# A simple BiLSTM-CRF model for Chinese Named Entity Recognition
 
 This repository includes the code for buliding a very simple __character-based BiLSTM-CRF sequence labeling model__ for Chinese Named Entity Recognition task. Its goal is to recognize three types of Named Entity: PERSON, LOCATION and ORGANIZATION.
 
 This code works on __Python 3 & TensorFlow 1.2__ and the following repository [https://github.com/guillaumegenthial/sequence_tagging](https://github.com/guillaumegenthial/sequence_tagging) gives me much help.
 
-### Model
+## Model
 
 This model is similar to the models provied by paper [1] and [2]. Its structure looks just like the following illustration:
 
@@ -18,16 +18,16 @@ The second layer, __BiLSTM layer__, can efficiently use *both past and future* i
 
 The third layer, __CRF layer__,  labels the tag for each character in one sentence. If we use a Softmax layer for labeling, we might get ungrammatic tag sequences beacuse the Softmax layer labels each position independently. We know that 'I-LOC' cannot follow 'B-PER' but Softmax doesn't know. Compared to Softmax, a CRF layer can use *sentence-level tag information* and model the transition behavior of each two different tags.
 
+## Dataset
 
-### Dataset
 |    | #sentence | #PER | #LOC | #ORG |
 | :----: | :---: | :---: | :---: | :---: |
 | train  | 46364 | 17615 | 36517 | 20571 |
 | test   | 4365  | 1973  | 2877  | 1331  |
 
-It looks like a portion of [MSRA corpus](http://sighan.cs.uchicago.edu/bakeoff2006/). I download the dataset from the link in `./data_path/original/link.txt`
+It looks like a portion of [MSRA corpus](http://sighan.cs.uchicago.edu/bakeoff2006/). I downloaded the dataset from the link in `./data_path/original/link.txt`
 
-#### data files
+### data files
 
 The directory `./data_path` contains:
 
@@ -36,7 +36,7 @@ The directory `./data_path` contains:
 
 For generating vocabulary file, please refer to the code in `data.py`. 
 
-#### data format
+### data format
 
 Each data file should be in the following format:
 
@@ -61,13 +61,13 @@ If you want to use your own dataset, please:
 - transform your corpus to the above format
 - generate a new vocabulary file
 
-### How to Run
+## How to Run
 
-#### train
+### train
 
 `python main.py --mode=train `
 
-#### test
+### test
 
 `python main.py --mode=test --demo_model=1521112368`
 
@@ -81,7 +81,7 @@ My test performance:
 | :---: | :---: | :---: | :---: | :---: | :---: |
 | 0.8945 | 0.8752 | 0.8847 | 0.8688 | 0.9118 | 0.8515
 
-#### demo
+### demo
 
 `python main.py --mode=demo --demo_model=1521112368`
 
@@ -89,9 +89,7 @@ You can input one Chinese sentence and the model will return the recognition res
 
 ![demo_pic](./pics/pic2.png)
 
-
-
-### References
+## References
 
 \[1\] [Bidirectional LSTM-CRF Models for Sequence Tagging](https://arxiv.org/pdf/1508.01991v1.pdf)
 

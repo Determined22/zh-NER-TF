@@ -17,16 +17,15 @@ def read_corpus(corpus_path):
     """
     data = []
     with open(corpus_path, encoding='utf-8') as fr:
-        lines = fr.readlines()
-    sent_, tag_ = [], []
-    for line in lines:
-        if line != '\n':
-            [char, label] = line.strip().split()
-            sent_.append(char)
-            tag_.append(label)
-        else:
-            data.append((sent_, tag_))
-            sent_, tag_ = [], []
+        sent_, tag_ = [], []    
+        for line in fr.readlines():
+            if line != '\n':
+                [char, label] = line.strip().split()
+                sent_.append(char)
+                tag_.append(label)
+            else:
+                data.append((sent_, tag_))
+                sent_, tag_ = [], []
 
     return data
 

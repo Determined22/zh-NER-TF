@@ -6,7 +6,7 @@ This code works on __Python 3 & TensorFlow 1.2__ and the following repository [h
 
 ## Model
 
-This model is similar to the models provied by paper [1] and [2]. Its structure looks just like the following illustration:
+This model is similar to the models provided by paper [1] and [2]. Its structure looks just like the following illustration:
 
 ![Network](./pics/pic1.png)
 

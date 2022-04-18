@@ -6,13 +6,13 @@ This code works on __Python 3 & TensorFlow 1.2__ and the following repository [h
 
 ## Model
 
-This model is similar to the models provied by paper [1] and [2]. Its structure looks just like the following illustration:
+This model is similar to the models provided by paper [1] and [2]. Its structure looks just like the following illustration:
 
 ![Network](./pics/pic1.png)
 
 For one Chinese sentence, each character in this sentence has / will have a tag which belongs to the set {O, B-PER, I-PER, B-LOC, I-LOC, B-ORG, I-ORG}.
 
-The first layer, __look-up layer__, aims at transforming each character representation from one-hot vector into *character embedding*. In this code I initialize the embedding matrix randomly and I know it looks too simple. We could add some language knowledge later. For example, do tokenization and use pre-trained word-level embedding, then every character in one token could be initialized with this token's word embedding. In addition, we can get the character embedding by combining low-level features (please see paper[2]'s section 4.1 and paper[3]'s section 3.3 for more details).
+The first layer, __look-up layer__, aims at transforming each character representation from one-hot vector into *character embedding*. In this code I initialize the embedding matrix randomly. We could add some linguistic knowledge later. For example, do tokenization and use pre-trained word-level embedding, then augment character embedding with the corresponding token's word embedding. In addition, we can get the character embedding by combining low-level features (please see paper[2]'s section 4.1 and paper[3]'s section 3.3 for more details).
 
 The second layer, __BiLSTM layer__, can efficiently use *both past and future* input information and extract features automatically.
 
@@ -89,7 +89,7 @@ You can input one Chinese sentence and the model will return the recognition res
 
 ![demo_pic](./pics/pic2.png)
 
-## References
+## Reference
 
 \[1\] [Bidirectional LSTM-CRF Models for Sequence Tagging](https://arxiv.org/pdf/1508.01991v1.pdf)
 
